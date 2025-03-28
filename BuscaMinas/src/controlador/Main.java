@@ -35,11 +35,17 @@ public class Main {
 	}
 	
 	// pasar de la venta ranking a inicio
-		public static void cambioRankingInico() {
-			ventanaInicio = new VentanaInicio(); // pasar por parametro todos las variables diferente que haya
-			ventanaInicio.setVisible(true);
-			ventanaRanking.setVisible(false);
-		}
+	public static void cambioRankingInico() {
+		ventanaInicio = new VentanaInicio(); // pasar por parametro todos las variables diferente que haya
+		ventanaInicio.setVisible(true);
+		ventanaRanking.setVisible(false);
+	}
+	
+	// cerrar sesion de la ventana ranking
+	public static void cerrarSesionRanking() {
+		ventanaRanking.setVisible(false);
+	}
+	
 	
 
 }
