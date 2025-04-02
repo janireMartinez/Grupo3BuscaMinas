@@ -1,6 +1,9 @@
 package modelo;
 
-public class Usuario {
+public class Usuario {   // Meter la puntuacion, el tiempo, el nombre, dificultad
+						/* Metodos minimos:
+						 * calcular puntuacion, get y set, 
+						 */
 	
 	private String nombre;
 
