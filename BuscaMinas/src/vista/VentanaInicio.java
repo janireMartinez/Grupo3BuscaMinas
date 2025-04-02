@@ -35,7 +35,7 @@ public class VentanaInicio extends JFrame {
 		gbl_contentPane.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JButton btnNewButton_1 = new JButton("New Game");
+		JButton btnNewButton_1 = new JButton("Nueva Partida");
 		btnNewButton_1.setForeground(new Color(0, 0, 0));
 		btnNewButton_1.setBackground(new Color(192, 192, 192));
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
