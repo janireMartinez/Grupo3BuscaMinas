@@ -17,7 +17,8 @@ public class Main {
 		
 		ventanaInicio = new VentanaInicio();
 		ventanaInicio.setVisible(true);
-
+		
+		
 		
 	}
 	// pasar de la inicial a juego

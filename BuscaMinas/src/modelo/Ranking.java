@@ -1,6 +1,6 @@
 package modelo;
 
-public class Ranking {
+public class Ranking { // FINAL
  /*
   * AQUI VA EL FICHERO 
   */

@@ -12,6 +12,7 @@ import java.awt.Insets;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import javax.swing.SwingConstants;
 
 public class VentanaJuego extends JFrame {
 
@@ -29,7 +30,7 @@ public class VentanaJuego extends JFrame {
         gridBagLayout.rowWeights = new double[]{0.0, 1.0, 1.0, Double.MIN_VALUE};
         getContentPane().setLayout(gridBagLayout);
 
-        JLabel labelNombre = new JLabel("¡Bienvenido + VARIABLE NOMBRE!");
+        JLabel labelNombre = new JLabel("¡Bienvenido " + VentanaInicio.getTextUsuario() + "!");
         GridBagConstraints gbc_labelNombre = new GridBagConstraints();
         gbc_labelNombre.anchor = GridBagConstraints.BELOW_BASELINE;
         gbc_labelNombre.insets = new Insets(0, 0, 5, 0);
@@ -39,12 +40,15 @@ public class VentanaJuego extends JFrame {
 
         JPanel panelArriba = new JPanel(new GridLayout(1, 3));
         JLabel panelBombas = new JLabel("Bombas");
+        panelBombas.setHorizontalAlignment(SwingConstants.CENTER);
         panelArriba.add(panelBombas);
 
         JLabel panelDificultad = new JLabel("Cambio Dificultad");
+        panelDificultad.setHorizontalAlignment(SwingConstants.CENTER);
         panelArriba.add(panelDificultad);
 
         panelTiempo = new JLabel();
+        panelTiempo.setHorizontalAlignment(SwingConstants.CENTER);
         panelArriba.add(panelTiempo);
 
         GridBagConstraints gbc_panelArriba = new GridBagConstraints();
@@ -53,6 +57,19 @@ public class VentanaJuego extends JFrame {
         gbc_panelArriba.gridx = 0;
         gbc_panelArriba.gridy = 1;
         getContentPane().add(panelArriba, gbc_panelArriba);
+        
+        JPanel panel = new JPanel();
+        GridBagConstraints gbc_panel = new GridBagConstraints();
+        gbc_panel.fill = GridBagConstraints.BOTH;
+        gbc_panel.gridx = 0;
+        gbc_panel.gridy = 2;
+        getContentPane().add(panel, gbc_panel);
+        GridBagLayout gbl_panel = new GridBagLayout();
+        gbl_panel.columnWidths = new int[]{0};
+        gbl_panel.rowHeights = new int[]{0};
+        gbl_panel.columnWeights = new double[]{Double.MIN_VALUE};
+        gbl_panel.rowWeights = new double[]{Double.MIN_VALUE};
+        panel.setLayout(gbl_panel);
 
         
         // iniciar el temporizador
