@@ -4,21 +4,23 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.GridLayout;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import javax.swing.Timer;
+import java.awt.event.ActionListener;
+
 import javax.swing.SwingConstants;
 
 public class VentanaJuego extends JFrame {
 
+	private JPanel panelTiempo;
+	private Timer timer;
+	private int segundos = 0;
     private static final long serialVersionUID = 1L;
-    private JLabel panelTiempo; 
-    private int segundos = 0;
+
 
     public VentanaJuego() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,9 +48,8 @@ public class VentanaJuego extends JFrame {
         JLabel panelDificultad = new JLabel("Cambio Dificultad");
         panelDificultad.setHorizontalAlignment(SwingConstants.CENTER);
         panelArriba.add(panelDificultad);
-
-        panelTiempo = new JLabel();
-        panelTiempo.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        panelTiempo = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         panelArriba.add(panelTiempo);
 
         GridBagConstraints gbc_panelArriba = new GridBagConstraints();
@@ -66,47 +67,43 @@ public class VentanaJuego extends JFrame {
         getContentPane().add(panel, gbc_panel);
         GridBagLayout gbl_panel = new GridBagLayout();
         gbl_panel.columnWidths = new int[]{0};
-        gbl_panel.rowHeights = new int[]{0};
+        gbl_panel.rowHeights = new int[]{0}; 	
         gbl_panel.columnWeights = new double[]{Double.MIN_VALUE};
         gbl_panel.rowWeights = new double[]{Double.MIN_VALUE};
         panel.setLayout(gbl_panel);
 
-        
-        // iniciar el temporizador
         iniciarTemporizador();
+        
     }
-
+    
     private void iniciarTemporizador() {
-        // ScheduledExecutorService es para ejecutar el temporizador cada segundo https://stackoverflow.com/questions/44032059/scheduledexecutorservice-only-runs-once
-        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-        scheduler.scheduleAtFixedRate(() -> {
+        timer = new Timer(1000, (ActionListener) e -> {
             segundos++;
             actualizarTiempo();
-        }, 0, 1, TimeUnit.SECONDS);  // Inicia inmediatamente y repite cada segundo
+        });
+        timer.start();
     }
-
+    
     private void actualizarTiempo() {
-        // Generar el tiempo en formato de 3 digitos 001, 002, 003, 004 ... 999
-        String tiempoStr = String.format("%03d", segundos); // Asegura que tenga 3 dígitos
+
+    	
+    	String tiempoStr = String.format("%03d", segundos);  // para poner los segundos 001 002 003..   https://stackoverflow.com/questions/6034523/format-an-integer-using-java-string-format
+
+        // cargar las imágenes según los caracteres ordenados 
         ImageIcon img1 = new ImageIcon("images/time" + tiempoStr.charAt(0) + ".gif");
         ImageIcon img2 = new ImageIcon("images/time" + tiempoStr.charAt(1) + ".gif");
         ImageIcon img3 = new ImageIcon("images/time" + tiempoStr.charAt(2) + ".gif");
 
-
-        // Panel con las 3 imagenes del temporizador
-        JPanel panelImagenes = new JPanel(new FlowLayout());
-        panelImagenes.add(new JLabel(img1));
-        panelImagenes.add(new JLabel(img2));
-        panelImagenes.add(new JLabel(img3));
-
-        panelTiempo.setIcon(null); // Eliminar el icono anterior
-        panelTiempo.setText(""); // Vaciar el texto
-
-        // Reemplazar el JPanel con un JLabel para las imagenes
+        // limpiarlo
         panelTiempo.removeAll();
-        panelTiempo.add(panelImagenes);
+
+       // imagenes
+        panelTiempo.add(new JLabel(img1));
+        panelTiempo.add(new JLabel(img2));
+        panelTiempo.add(new JLabel(img3));
+
+        // Refrescar el panel           https://stackoverflow.com/questions/1097366/java-swing-revalidate-vs-repaint
         panelTiempo.revalidate();
         panelTiempo.repaint();
     }
-
 }
