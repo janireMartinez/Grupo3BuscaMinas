@@ -15,6 +15,8 @@ boolean estaRevelada(): Retorna si la casilla ya está descubierta.
 void setNumeroMinasAlrededor(int n): Almacena el número de minas cercanas.
 
 int getNumeroMinasAlrededor(): Devuelve el número de minas cercanas.
+
+
 	 */
 	
 	private boolean tieneMina;

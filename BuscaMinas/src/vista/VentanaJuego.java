@@ -49,7 +49,7 @@ public class VentanaJuego extends JFrame {
         panelDificultad.setHorizontalAlignment(SwingConstants.CENTER);
         panelArriba.add(panelDificultad);
         
-        panelTiempo = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        panelTiempo = new JPanel();
         panelArriba.add(panelTiempo);
 
         GridBagConstraints gbc_panelArriba = new GridBagConstraints();
@@ -96,6 +96,7 @@ public class VentanaJuego extends JFrame {
 
         // limpiarlo
         panelTiempo.removeAll();
+        panelTiempo.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
        // imagenes
         panelTiempo.add(new JLabel(img1));
