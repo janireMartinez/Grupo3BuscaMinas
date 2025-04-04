@@ -8,9 +8,9 @@ public enum Dificultad {
 	
 	DIFICIL(16, 30, 99);
 	
-	private int filas;
-	private int columnas;
-	private int bombas;
+	private final int filas;
+	private final int columnas;
+	private final int bombas;
 	
 	Dificultad(int filas, int columnas, int bombas) {
 		this.filas=filas;

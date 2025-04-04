@@ -4,7 +4,12 @@ public class ZonaVacia extends Casilla{
 	private int numero;
 	private boolean esRevelada;
 	
-	public ZonaVacia(int numero, boolean esRevelada) {
+	/*
+	 * El contrsuctor que se heredara de la clase casilla tendra como parametro (int filas, int columnas) los demas atributos como ya estan incializados en
+	 * la clase casilla tendras que cambiarlos en tu clase si es necesario 
+	 */
+
+	public ZonaVacia(int numero, boolean esRevelada) { 
 		this.numero = numero;
 		this.esRevelada = false;
 	}

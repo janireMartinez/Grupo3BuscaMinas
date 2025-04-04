@@ -1,6 +1,7 @@
 package vista;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -10,6 +11,11 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.Timer;
+
+import modelo.Casilla;
+import modelo.Dificultad;
+import modelo.TableroEntero;
+
 import java.awt.event.ActionListener;
 
 import javax.swing.SwingConstants;
@@ -20,6 +26,7 @@ public class VentanaJuego extends JFrame {
 	private Timer timer;
 	private int segundos = 0;
     private static final long serialVersionUID = 1L;
+    private TableroEntero tablero;
 
 
     public VentanaJuego() {
@@ -41,7 +48,7 @@ public class VentanaJuego extends JFrame {
         getContentPane().add(labelNombre, gbc_labelNombre);
 
         JPanel panelArriba = new JPanel(new GridLayout(1, 3));
-        JLabel panelBombas = new JLabel("Bombas");
+        JLabel panelBombas = new JLabel("Bombas: " + Dificultad.FACIL.getBombas());
         panelBombas.setHorizontalAlignment(SwingConstants.CENTER);
         panelArriba.add(panelBombas);
 
@@ -59,12 +66,26 @@ public class VentanaJuego extends JFrame {
         gbc_panelArriba.gridy = 1;
         getContentPane().add(panelArriba, gbc_panelArriba);
         
+        //CREAR TABLERO CON LA DIFICULTAD SELECIONADA (facil como predeterminada)
+        tablero = new TableroEntero(Dificultad.FACIL);
+        
         JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(tablero.getFilas(), tablero.getColumnas()));
         GridBagConstraints gbc_panel = new GridBagConstraints();
         gbc_panel.fill = GridBagConstraints.BOTH;
         gbc_panel.gridx = 0;
         gbc_panel.gridy = 2;
         getContentPane().add(panel, gbc_panel);
+        
+        //PARA AÑADIR LOS BOTONES AL TABLERO
+        Casilla[][] casilla = tablero.getCasilla();
+        for (int i = 0; i < tablero.getFilas(); i++) {
+        	for	(int j = 0; j < tablero.getColumnas(); j++) {
+        		JButton boton = casilla[i][j].getBoton();
+        		final int fila = i;
+        		final int columna = j;
+        	}
+        }
         GridBagLayout gbl_panel = new GridBagLayout();
         gbl_panel.columnWidths = new int[]{0};
         gbl_panel.rowHeights = new int[]{0}; 	
