@@ -1,7 +1,24 @@
 package modelo;
 
 public class ZonaVacia extends Casilla{
-
+	private int numero;
+	private boolean esRevelada;
+	
+	public ZonaVacia(int numero, boolean esRevelada) {
+		this.numero = numero;
+		this.esRevelada = false;
+	}
+	
+	//@Override
+	public void revelar() {
+		if(!esRevelada) {
+			esRevelada = true;
+		}else {
+			esRevelada = false;
+		}
+		
+	}
+	
 	/*
 	 * ZonaVacia
 
