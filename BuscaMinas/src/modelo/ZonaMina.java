@@ -1,7 +1,15 @@
 package modelo;
 
 public class ZonaMina extends Casilla{
-
+	private boolean tieneMina;
+	
+	@Override
+	public void revelar() {
+		if(tieneMina) {
+			//Aqui iria el metodo de fin del juego 
+		}
+	}
+	
 	/*
 	 * ZonaMina
 @Override void revelar(): Si se revela, el juego termina.
