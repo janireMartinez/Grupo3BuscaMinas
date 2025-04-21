@@ -1,5 +1,6 @@
 package controlador;
 
+import modelo.Dificultad;
 import vista.VentanaInicio;
 import vista.VentanaJuego;
 import vista.VentanaRanking;
@@ -22,8 +23,8 @@ public class Main {
 		
 	}
 	// pasar de la inicial a juego
-	public static void cambioInicioJuego() {
-		ventanaJuego = new VentanaJuego(); // pasar por parametro todos las variables diferente que haya
+	public static void cambioInicioJuego(String nombre, Dificultad dificultad) {
+		ventanaJuego = new VentanaJuego(nombre, dificultad); // pasar por parametro todos las variables diferente que haya
 		ventanaJuego.setVisible(true);
 		ventanaInicio.setVisible(false);
 	}

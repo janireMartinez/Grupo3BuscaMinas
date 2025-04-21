@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controlador.Main;
+import modelo.Dificultad;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -26,6 +27,7 @@ public class VentanaInicio extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private static JTextField textUsuario;
+	private JComboBox<String> boxDificultad;
 
 	public VentanaInicio() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -93,7 +95,7 @@ public class VentanaInicio extends JFrame {
 		gbc_dificultad.gridy = 0;
 		panel_1.add(dificultad, gbc_dificultad);
 		
-		JComboBox boxDificultad = new JComboBox();
+		boxDificultad = new JComboBox<>();
 		boxDificultad.setModel(new DefaultComboBoxModel(new String[] {"Fácil", "Media", "Difícil"}));
 		boxDificultad.setToolTipText("");
 		GridBagConstraints gbc_boxDificultad = new GridBagConstraints();
@@ -120,10 +122,30 @@ public class VentanaInicio extends JFrame {
 		buttonIniciarPartida.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				String nombre = textUsuario.getText();
 				if (textUsuario.getText() == null || textUsuario.getText().trim().isEmpty()) {
 				    JOptionPane.showMessageDialog(null, "El campo usuario está vacío", "Error", JOptionPane.ERROR_MESSAGE);
 				} else {
-				    Main.cambioInicioJuego();
+					Dificultad dificultad;
+					String seleccion = (String) boxDificultad.getSelectedItem();
+					
+					switch (seleccion) {
+					case "Fácil":
+						dificultad = Dificultad.FACIL;
+						break;
+						
+					case "Media":
+						dificultad = Dificultad.MEDIA;
+						break;
+						
+					case "Difícil":
+						dificultad = Dificultad.DIFICIL;
+						break;
+						
+					default:
+						dificultad = Dificultad.FACIL;
+					}
+				    Main.cambioInicioJuego(nombre, dificultad);
 				}
 				
 			}

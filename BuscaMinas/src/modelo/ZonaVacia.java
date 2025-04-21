@@ -21,23 +21,41 @@ import java.util.List;
 
 //ZonaVacia es una subclase de Casilla que representa una casilla sin mina. Puede tener un número del 0 al 8 indicando cuántas minas la rodean.
 public class ZonaVacia extends Casilla {
-	//numero: representa la cantidad de minas alrededor de esta casilla.
-    private int numero; // Número de minas adyacentes
-    //adyacentes: lista de casillas vecinas, usada para la revelación recursiva si el número es 0.
-    private List<Casilla> adyacentes; // Casillas vecinas
-    //Crea una casilla vacía con el número de minas adyacentes especificado. Llama al constructor de Casilla y garantiza que no tenga mina.
+	
+    private int numero; 
+    private List<Casilla> adyacentes;
+    private static ImageIcon casillaAbierta;
+    private static ImageIcon[] numeroCasilla;
+    
     public ZonaVacia(int numero) {
         super();
         this.numero = numero;
         this.estaRevelada = false;
         this.tieneMina = false;
     }
+    
+    public static void imagenesNumeros() {
+    	if (casillaAbierta == null || numeroCasilla == null) {
+    		try {
+    			casillaAbierta = new ImageIcon("images/open0.gif");
+    			numeroCasilla = new ImageIcon[9];
+    			numeroCasilla[0] = casillaAbierta;
+    			
+    			for (int i = 1; i <= 8; i++) {
+    				numeroCasilla[i] = new ImageIcon("images/open"+i+".gif");
+    			}
+    			
+    		} catch (Exception e) {
+    			e.getMessage();
+    		}
+    	} 
+    }
     //Asigna las casillas vecinas a esta casilla. Esto es útil para que luego pueda revelarlas automáticamente si numero == 0.
     public void setAdyacentes(List<Casilla> adyacentes) {
         this.adyacentes = adyacentes;
     }
     /*
-     * 🔹 Este método se llama cuando el jugador hace clic izquierdo sobre la casilla.
+     * 🔹Este método se llama cuando el jugador hace clic izquierdo sobre la casilla.
 		Solo se revela si no estaba revelada y no tiene bandera.
 		Marca la casilla como revelada y desactiva el botón.
 		Muestra la imagen correspondiente (ver mostrarNumero()).
@@ -66,10 +84,11 @@ public class ZonaVacia extends Casilla {
 		Mejora la interfaz visual en vez de usar texto.
      */
     private void mostrarNumero() {
-        if (numero >= 1 && numero <= 8) {
-            boton.setIcon(new ImageIcon("images/" + numero + ".gif"));
-        } else if (numero == 0) {
-            boton.setIcon(new ImageIcon("images/0.gif"));
+    	imagenesNumeros();
+        if (numero >= 0 && numero <= 8 && numeroCasilla[numero] != null) {
+            boton.setIcon(numeroCasilla[numero]);
+        } else {
+            boton.setText(String.valueOf(numero));
         }
     }
     // Permiten asignar o consultar el número de minas cercanas a esta casilla.
