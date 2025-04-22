@@ -1,13 +1,69 @@
 package modelo;
 
+import java.util.List;
+
+/**
+	* Clase que representa una casilla con mina 
+	* Extiende la clase abstracta Casilla
+	* Contiene metodos y atributos que determinan las condiciones qye llevan al fin del juego
+	*
+	* Atributo:
+	* 	- cadBombas : Lista de las casillas con las que cuenta el tablero
+	*
+	* Metodos:
+	* 	- gameOverAdvice : Devuelve un mensaje de fin del juego
+	* 	- setCadBombas : Asigna las casillas a una lista para poder recorrerla luego
+	* 	- revelar : Revela, y representa las casillas que contengan una mina 
+	*/
+
 public class ZonaMina extends Casilla{
-	private boolean tieneMina;
+	private List<Casilla> cadBombas;
 	
+	public ZonaMina() {
+		super();
+		this.estaRevelada=false;
+		this.tieneMina=true;
+	}
+
+	//Metodo que devuelve el mensaje de fin del juego
+	public String gameOverAdvice() { 
+		return "Fin del juego";
+	}
+	
+	//Metodo que asigna las casillas a una lista
+	public void setCadBombas(List<Casilla> cadBombas) {
+		this.cadBombas=cadBombas;
+	}
+	
+	/*Este metodo revela una casilla con mina cuando el jugador hace click izquierdo sobre una casilla que la contenga,
+		lo que forma una reaccion en cadena que desvela el resto de las bombas pero sin llegar a detonarlas y que lleva
+		al fin del juego
+	*/
+
 	@Override
 	public void revelar() {
 		if(tieneMina) {
-			//Aqui iria el metodo de fin del juego 
+			estaRevelada=true;
+			boton.setEnabled(false);
+			boton.setIcon(bombDeath);
+			for(Casilla bomba : cadBombas) {
+				if(tieneMina) {
+					boton.setEnabled(false);
+					bomba.boton.setIcon(bombRevealed);
+				}
+				
+			}
 		}
+	}
+
+	@Override
+	public void setNumeroMinasAlrededor(int n) {
+		
+	}
+
+	@Override
+	public int getNumeroMinasAlrededor() {
+		return 0;
 	}
 	
 	/*
