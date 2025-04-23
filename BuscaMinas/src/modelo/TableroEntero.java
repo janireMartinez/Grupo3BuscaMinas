@@ -28,6 +28,7 @@ public class TableroEntero {
 		mostrarTablero();
 		colocarMinas();
 		calcularMinas();
+		casillasAdyacentes();
 	}
 	
 	//METODO PARA INICIALIZAR EL TABLERO
