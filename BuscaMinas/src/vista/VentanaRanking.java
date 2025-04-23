@@ -1,5 +1,9 @@
 package vista;
 
+import modelo.Puntuacion;
+import modelo.Ranking;
+
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -14,19 +18,26 @@ import java.awt.Font;
 import javax.swing.border.MatteBorder;
 
 import controlador.Main;
+import modelo.Ranking;
 
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 public class VentanaRanking extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private Ranking ranking;
+	private JLabel Ranking1, Ranking2, Ranking3, Ranking4, Ranking5;
+    private JLabel Puntuacion1, Puntuacion2, Puntuacion3, Puntuacion4, Puntuacion5;
+    private JLabel Tiempo1, Tiempo2, Tiempo3, Tiempo4, Tiempo5;
 
-	public VentanaRanking() { //METER LOS PARAMETROS DEL NOMBRE, PUNTUACION Y EL TIEMPO
+	public VentanaRanking() { 
+		ranking = new Ranking();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -118,35 +129,35 @@ public class VentanaRanking extends JFrame {
 		gbl_panel_2.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel_2.setLayout(gbl_panel_2);
 		
-		JLabel Ranking1 = new JLabel("");
+		Ranking1 = new JLabel("");
 		GridBagConstraints gbc_Ranking1 = new GridBagConstraints();
 		gbc_Ranking1.insets = new Insets(0, 0, 5, 0);
 		gbc_Ranking1.gridx = 0;
 		gbc_Ranking1.gridy = 0;
 		panel_2.add(Ranking1, gbc_Ranking1);
 		
-		JLabel Ranking2 = new JLabel("");
+		Ranking2 = new JLabel("");
 		GridBagConstraints gbc_Ranking2 = new GridBagConstraints();
 		gbc_Ranking2.insets = new Insets(0, 0, 5, 0);
 		gbc_Ranking2.gridx = 0;
 		gbc_Ranking2.gridy = 1;
 		panel_2.add(Ranking2, gbc_Ranking2);
 		
-		JLabel Ranking3 = new JLabel("");
+		Ranking3 = new JLabel("");
 		GridBagConstraints gbc_Ranking3 = new GridBagConstraints();
 		gbc_Ranking3.insets = new Insets(0, 0, 5, 0);
 		gbc_Ranking3.gridx = 0;
 		gbc_Ranking3.gridy = 2;
 		panel_2.add(Ranking3, gbc_Ranking3);
 		
-		JLabel Ranking4 = new JLabel("");
+		Ranking4 = new JLabel("");
 		GridBagConstraints gbc_Ranking4 = new GridBagConstraints();
 		gbc_Ranking4.insets = new Insets(0, 0, 5, 0);
 		gbc_Ranking4.gridx = 0;
 		gbc_Ranking4.gridy = 3;
 		panel_2.add(Ranking4, gbc_Ranking4);
 		
-		JLabel Ranking5 = new JLabel("");
+		Ranking5 = new JLabel("");
 		GridBagConstraints gbc_Ranking5 = new GridBagConstraints();
 		gbc_Ranking5.gridx = 0;
 		gbc_Ranking5.gridy = 4;
@@ -168,35 +179,35 @@ public class VentanaRanking extends JFrame {
 		gbl_panel_3.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel_3.setLayout(gbl_panel_3);
 		
-		JLabel Puntuacion1 = new JLabel("");
+		Puntuacion1 = new JLabel("");
 		GridBagConstraints gbc_Puntuacion1 = new GridBagConstraints();
 		gbc_Puntuacion1.insets = new Insets(0, 0, 5, 0);
 		gbc_Puntuacion1.gridx = 0;
 		gbc_Puntuacion1.gridy = 0;
 		panel_3.add(Puntuacion1, gbc_Puntuacion1);
 		
-		JLabel Puntuacion2 = new JLabel("");
+		Puntuacion2 = new JLabel("");
 		GridBagConstraints gbc_Puntuacion2 = new GridBagConstraints();
 		gbc_Puntuacion2.insets = new Insets(0, 0, 5, 0);
 		gbc_Puntuacion2.gridx = 0;
 		gbc_Puntuacion2.gridy = 1;
 		panel_3.add(Puntuacion2, gbc_Puntuacion2);
 		
-		JLabel Puntuacion3 = new JLabel("");
+		Puntuacion3 = new JLabel("");
 		GridBagConstraints gbc_Puntuacion3 = new GridBagConstraints();
 		gbc_Puntuacion3.insets = new Insets(0, 0, 5, 0);
 		gbc_Puntuacion3.gridx = 0;
 		gbc_Puntuacion3.gridy = 2;
 		panel_3.add(Puntuacion3, gbc_Puntuacion3);
 		
-		JLabel Puntuacion4 = new JLabel("");
+		Puntuacion4 = new JLabel("");
 		GridBagConstraints gbc_Puntuacion4 = new GridBagConstraints();
 		gbc_Puntuacion4.insets = new Insets(0, 0, 5, 0);
 		gbc_Puntuacion4.gridx = 0;
 		gbc_Puntuacion4.gridy = 3;
 		panel_3.add(Puntuacion4, gbc_Puntuacion4);
 		
-		JLabel Puntuacion5 = new JLabel("");
+		Puntuacion5 = new JLabel("");
 		GridBagConstraints gbc_Puntuacion5 = new GridBagConstraints();
 		gbc_Puntuacion5.gridx = 0;
 		gbc_Puntuacion5.gridy = 4;
@@ -218,35 +229,35 @@ public class VentanaRanking extends JFrame {
 		gbl_panel_4.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel_4.setLayout(gbl_panel_4);
 		
-		JLabel Tiempo1 = new JLabel("");
+		Tiempo1 = new JLabel("");
 		GridBagConstraints gbc_Tiempo1 = new GridBagConstraints();
 		gbc_Tiempo1.insets = new Insets(0, 0, 5, 0);
 		gbc_Tiempo1.gridx = 0;
 		gbc_Tiempo1.gridy = 0;
 		panel_4.add(Tiempo1, gbc_Tiempo1);
 		
-		JLabel Tiempo2 = new JLabel("");
+		Tiempo2 = new JLabel("");
 		GridBagConstraints gbc_Tiempo2 = new GridBagConstraints();
 		gbc_Tiempo2.insets = new Insets(0, 0, 5, 0);
 		gbc_Tiempo2.gridx = 0;
 		gbc_Tiempo2.gridy = 1;
 		panel_4.add(Tiempo2, gbc_Tiempo2);
 		
-		JLabel Tiempo3 = new JLabel("");
+		Tiempo3 = new JLabel("");
 		GridBagConstraints gbc_Tiempo3 = new GridBagConstraints();
 		gbc_Tiempo3.insets = new Insets(0, 0, 5, 0);
 		gbc_Tiempo3.gridx = 0;
 		gbc_Tiempo3.gridy = 2;
 		panel_4.add(Tiempo3, gbc_Tiempo3);
 		
-		JLabel Tiempo4 = new JLabel("");
+		Tiempo4 = new JLabel("");
 		GridBagConstraints gbc_Tiempo4 = new GridBagConstraints();
 		gbc_Tiempo4.insets = new Insets(0, 0, 5, 0);
 		gbc_Tiempo4.gridx = 0;
 		gbc_Tiempo4.gridy = 3;
 		panel_4.add(Tiempo4, gbc_Tiempo4);
 		
-		JLabel Tiempo5 = new JLabel("");
+		Tiempo5 = new JLabel("");
 		GridBagConstraints gbc_Tiempo5 = new GridBagConstraints();
 		gbc_Tiempo5.gridx = 0;
 		gbc_Tiempo5.gridy = 4;
@@ -293,5 +304,28 @@ public class VentanaRanking extends JFrame {
 		gbc_BotonCerrar.gridx = 2;
 		gbc_BotonCerrar.gridy = 0;
 		panel_5.add(BotonCerrar, gbc_BotonCerrar);
+		
+		cargarRanking();
 	}
+	
+	public void cargarRanking() {
+		List<Puntuacion> puntuaciones = ranking.getPuntuacionLista();
+        JLabel[] rankingLabels = {Ranking1, Ranking2, Ranking3, Ranking4, Ranking5};
+        JLabel[] puntuacionLabels = {Puntuacion1, Puntuacion2, Puntuacion3, Puntuacion4, Puntuacion5};
+        JLabel[] tiempoLabels = {Tiempo1, Tiempo2, Tiempo3, Tiempo4, Tiempo5};
+
+        for (int i = 0; i < 5; i++) {
+            if (i < puntuaciones.size()) {
+                Puntuacion p = puntuaciones.get(i);
+                rankingLabels[i].setText(p.getNombre());
+                puntuacionLabels[i].setText(String.format("%.2f", p.getPuntuacion()));
+                tiempoLabels[i].setText(p.getTiempo() + " s");
+            } else {
+                rankingLabels[i].setText("-");
+                puntuacionLabels[i].setText("-");
+                tiempoLabels[i].setText("-");
+            }
+        }
+	}
+
 }

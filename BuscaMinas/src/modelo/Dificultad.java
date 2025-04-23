@@ -1,11 +1,8 @@
 package modelo;
 
 public enum Dificultad {
-	// facil, media, dificil (ATRIBUTOS: filas, columnas, bombas)  y para llamar y tal, static Dificultad obtenerDificultad(String nombre)
 	FACIL(8, 8, 10),
-	
 	MEDIA(16, 16, 40),
-	
 	DIFICIL(16, 30, 99);
 	
 	private final int filas;
@@ -28,6 +25,26 @@ public enum Dificultad {
 
 	public int getBombas() {
 		return bombas;
+	}
+	
+	public int coeficientePuntuacion() {
+		switch (this) {
+		case FACIL: 
+			return 1;
+			
+		case MEDIA:
+			return 2;
+			
+		case DIFICIL:
+			return 3;
+			
+		default:
+			return 1;
+		}
+	}
+	
+	public static Dificultad obtenerDificultad(String nombre) {
+		return valueOf(nombre.toUpperCase());
 	}
 	
 	

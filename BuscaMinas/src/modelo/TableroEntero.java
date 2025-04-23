@@ -13,6 +13,7 @@ public class TableroEntero {
 	private boolean juegoAcabado;
 	private int casillasReveladas;
 	private int bombasRestantes;
+	private int minasMarcadas;
 	
 	public TableroEntero(Dificultad dificultad) {
 		ZonaVacia.imagenesNumeros();
@@ -24,6 +25,7 @@ public class TableroEntero {
 		this.juegoAcabado = false;
 		this.casillasReveladas = 0;
 		this.bombasRestantes = bombas;
+		this.minasMarcadas = 0;
 		
 		mostrarTablero();
 		colocarMinas();
@@ -125,8 +127,10 @@ public class TableroEntero {
 			casilla[fila][columna].revelarConBandera();
 			if (casilla[fila][columna].estaMarcada()) {
 				bombasRestantes -= 1;
+				minasMarcadas += 1;
 			} else {
 				bombasRestantes += 1;
+				minasMarcadas -= 1;
 			}
 		}
 	}
@@ -195,4 +199,9 @@ public class TableroEntero {
 	public void setBombasRestantes(int bombasRestantes) {
 		this.bombasRestantes = bombasRestantes;
 	}
+
+	public int getMinasMarcadas() {
+		return minasMarcadas;
+	}
+	
 }
