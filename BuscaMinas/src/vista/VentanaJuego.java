@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -47,7 +48,7 @@ public class VentanaJuego extends JFrame {
         int margenes = 20; 
         int windowWidth = tableroWidth + 30; 
         int windowHeight = tableroHeight + panelArribaHeight + labelNombreHeight + margenes;
-        setBounds(100, 100, windowWidth, windowHeight);
+        //setBounds(100, 100, windowWidth, windowHeight);
         GridBagLayout gridBagLayout = new GridBagLayout();
         gridBagLayout.columnWidths = new int[]{0, 0};
         gridBagLayout.rowHeights = new int[]{labelNombreHeight, panelArribaHeight, tableroHeight};
@@ -74,8 +75,12 @@ public class VentanaJuego extends JFrame {
         panelArriba.add(panelDificultad);
         
         panelTiempo = new JPanel();
+        panelTiempo.setPreferredSize(new Dimension(100, 40));
         panelTiempo.setMinimumSize(new Dimension(100, 40));
-        panelArriba.add(panelTiempo);
+        panelTiempo.setMaximumSize(new Dimension(100, 40));
+        panelArriba.add(panelTiempo); // <-- Esto es lo que falta
+
+
 
         GridBagConstraints gbc_panelArriba = new GridBagConstraints();
         gbc_panelArriba.insets = new Insets(0, 0, 5, 0);
@@ -87,15 +92,21 @@ public class VentanaJuego extends JFrame {
         //CREAR TABLERO CON LA DIFICULTAD SELECIONADA 
         tablero = new TableroEntero(dificultad);
         
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(tablero.getFilas(), tablero.getColumnas()));
+        JPanel panel = new JPanel(new GridLayout(tablero.getFilas(), tablero.getColumnas()));
         panel.setPreferredSize(new Dimension(tableroWidth, tableroHeight));
+
+        // Contenedor con márgenes
+        JPanel panelConMargenes = new JPanel(new BorderLayout());
+        panelConMargenes.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20)); // top, left, bottom, right
+        panelConMargenes.add(panel, BorderLayout.CENTER);
+
         GridBagConstraints gbc_panel = new GridBagConstraints();
         gbc_panel.fill = GridBagConstraints.NONE;
         gbc_panel.anchor = GridBagConstraints.CENTER;
         gbc_panel.gridx = 0;
         gbc_panel.gridy = 2;
-        getContentPane().add(panel, gbc_panel);
+        getContentPane().add(panelConMargenes, gbc_panel);
+
         
         //PARA AÑADIR LOS BOTONES AL TABLERO
         Casilla[][] casilla = tablero.getCasilla();
@@ -136,7 +147,8 @@ public class VentanaJuego extends JFrame {
 		panel.repaint();
 
         iniciarTemporizador();
-        
+        pack(); // Ajusta la ventana al contenido
+        setLocationRelativeTo(null); // Centra la ventana en la pantalla
     }
     
     private void iniciarTemporizador() {
