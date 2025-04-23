@@ -3,6 +3,7 @@ package controlador;
 import modelo.Dificultad;
 import vista.VentanaInicio;
 import vista.VentanaJuego;
+import vista.VentanaPerder;
 import vista.VentanaRanking;
 
 public class Main {
@@ -10,16 +11,13 @@ public class Main {
 	private static VentanaInicio ventanaInicio;
 	private static VentanaJuego ventanaJuego;
 	private static VentanaRanking ventanaRanking;
-
+	private static VentanaPerder ventanaPerder;
 	
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 		ventanaInicio = new VentanaInicio();
 		ventanaInicio.setVisible(true);
-		
-		
 		
 	}
 	// pasar de la inicial a juego
@@ -48,6 +46,25 @@ public class Main {
 		ventanaRanking.setVisible(false);
 	}
 	
+	//ventana de perder
+	public static void apareceVentanaPerder(String nombre, Dificultad dificultad, VentanaJuego ventanaJuego) {
+		ventanaPerder = new VentanaPerder(nombre, dificultad, ventanaJuego);
+		ventanaPerder.setVisible(true);
+	}
 	
+	//cerrar sesion cuando pierdes
+	public static void cerrarSesion(String nombre, Dificultad dificultad, VentanaJuego ventanaJuego) {
+		if (ventanaPerder != null) {
+			ventanaPerder.dispose();
+		}
+		
+		if (ventanaJuego != null) {
+			ventanaJuego.dispose();
+		}
+		
+		ventanaInicio = new VentanaInicio();
+		ventanaInicio.setVisible(true);
+		
+	}
 
 }

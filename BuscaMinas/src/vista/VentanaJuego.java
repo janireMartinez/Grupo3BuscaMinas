@@ -16,6 +16,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.Timer;
 
+import controlador.Main;
 import modelo.Casilla;
 import modelo.Dificultad;
 import modelo.TableroEntero;
@@ -123,8 +124,8 @@ public class VentanaJuego extends JFrame {
         						tablero.revelarCasilla(fila, columna);
         						if (tablero.perder(fila, columna)) {
         							timer.stop();
-        							JOptionPane.showMessageDialog(VentanaJuego.this, "Has perdido");
         							tablero.setJuegoAcabado(true);
+        							Main.apareceVentanaPerder(nombre, dificultad, VentanaJuego.this);
         						} else if (tablero.ganar()) {
         							timer.stop();
         							JOptionPane.showMessageDialog(VentanaJuego.this, "Has ganado");
