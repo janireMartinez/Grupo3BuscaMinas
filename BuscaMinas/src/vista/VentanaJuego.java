@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -24,6 +25,10 @@ import modelo.TableroEntero;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.JComboBox;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 import javax.swing.SwingConstants;
 
@@ -58,6 +63,7 @@ public class VentanaJuego extends JFrame {
         getContentPane().setLayout(gridBagLayout);
 
         JLabel labelNombre = new JLabel("¡Bienvenido " + nombre + "!");
+        labelNombre.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 11));
         GridBagConstraints gbc_labelNombre = new GridBagConstraints();
         gbc_labelNombre.anchor = GridBagConstraints.BELOW_BASELINE;
         gbc_labelNombre.insets = new Insets(0, 0, 5, 0);
@@ -68,12 +74,34 @@ public class VentanaJuego extends JFrame {
         JPanel panelArriba = new JPanel(new GridLayout(1, 3));
         panelArriba.setMinimumSize(new Dimension(tableroWidth, 60));
         JLabel panelBombas = new JLabel("Bombas: " + dificultad.getBombas());
+        panelBombas.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 11));
         panelBombas.setHorizontalAlignment(SwingConstants.CENTER);
         panelArriba.add(panelBombas);
 
-        JLabel panelDificultad = new JLabel("Cambio Dificultad");
-        panelDificultad.setHorizontalAlignment(SwingConstants.CENTER);
-        panelArriba.add(panelDificultad);
+        JPanel panelDificultadConCombo = new JPanel(new BorderLayout());
+
+        JLabel labelDificultad = new JLabel("Dificultad:");
+        labelDificultad.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 11));
+        labelDificultad.setHorizontalAlignment(SwingConstants.CENTER);
+        panelDificultadConCombo.add(labelDificultad, BorderLayout.NORTH);
+
+        JComboBox<Dificultad> comboDificultad = new JComboBox<>(Dificultad.values());
+        comboDificultad.setSelectedItem(dificultad); // selecciona la dificultad actual
+        panelDificultadConCombo.add(comboDificultad, BorderLayout.SOUTH);
+
+        panelArriba.add(panelDificultadConCombo);
+        
+        comboDificultad.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    Dificultad nuevaDificultad = (Dificultad) comboDificultad.getSelectedItem();
+                    dispose(); // Cierra la ventana actual
+                    timer.stop(); // Detiene el temporizador
+                    new VentanaJuego(nombre, nuevaDificultad).setVisible(true); // Abre una nueva ventana con la dificultad elegida
+                }
+            }
+        });
         
         panelTiempo = new JPanel();
         panelTiempo.setPreferredSize(new Dimension(100, 40));

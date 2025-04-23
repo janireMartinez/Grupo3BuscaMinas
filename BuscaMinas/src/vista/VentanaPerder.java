@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Font;
 
 public class VentanaPerder extends JFrame {
 
@@ -47,6 +48,7 @@ public class VentanaPerder extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		
 		JLabel lblNewLabel = new JLabel("¡Perdiste!");
+		lblNewLabel.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 11));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.insets = new Insets(0, 0, 10, 0);
 		gbc_lblNewLabel.gridx = 0;
@@ -54,6 +56,7 @@ public class VentanaPerder extends JFrame {
 		contentPane.add(lblNewLabel, gbc_lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("¿Desea jugar una nueva partida?");
+		lblNewLabel_1.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 11));
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 10, 0);
 		gbc_lblNewLabel_1.gridx = 0;
@@ -75,6 +78,7 @@ public class VentanaPerder extends JFrame {
 		panel.setLayout(gbl_panel);
 		
 		JButton botonSi = new JButton("Si");
+		botonSi.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 11));
 		botonSi.setPreferredSize(new Dimension(80, 30));
 		botonSi.addMouseListener(new MouseAdapter() {
 			@Override
@@ -92,6 +96,7 @@ public class VentanaPerder extends JFrame {
 		panel.add(botonSi, gbc_botonSi);
 		
 		JButton botonNo = new JButton("No");
+		botonNo.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 11));
 		botonNo.setPreferredSize(new Dimension(80, 30));
 		botonNo.addMouseListener(new MouseAdapter() {
 			@Override

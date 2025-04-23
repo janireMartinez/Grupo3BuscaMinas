@@ -21,6 +21,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Font;
 
 public class VentanaInicio extends JFrame {
 
@@ -58,6 +59,7 @@ public class VentanaInicio extends JFrame {
 		panel.setLayout(gbl_panel);
 		
 		JLabel usuarioLabel = new JLabel("Nuevo usuario: ");
+		usuarioLabel.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 11));
 		GridBagConstraints gbc_usuarioLabel = new GridBagConstraints();
 		gbc_usuarioLabel.insets = new Insets(0, 0, 0, 5);
 		gbc_usuarioLabel.anchor = GridBagConstraints.EAST;
@@ -88,6 +90,7 @@ public class VentanaInicio extends JFrame {
 		panel_1.setLayout(gbl_panel_1);
 		
 		JLabel dificultad = new JLabel("Seleccionar dificultad:");
+		dificultad.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 11));
 		GridBagConstraints gbc_dificultad = new GridBagConstraints();
 		gbc_dificultad.insets = new Insets(0, 0, 0, 5);
 		gbc_dificultad.anchor = GridBagConstraints.EAST;
@@ -96,6 +99,7 @@ public class VentanaInicio extends JFrame {
 		panel_1.add(dificultad, gbc_dificultad);
 		
 		boxDificultad = new JComboBox<>();
+		boxDificultad.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 11));
 		boxDificultad.setModel(new DefaultComboBoxModel(new String[] {"Fácil", "Media", "Difícil"}));
 		boxDificultad.setToolTipText("");
 		GridBagConstraints gbc_boxDificultad = new GridBagConstraints();
@@ -119,6 +123,7 @@ public class VentanaInicio extends JFrame {
 		panel_2.setLayout(gbl_panel_2);
 		
 		JButton buttonIniciarPartida = new JButton("Iniciar Partida");
+		buttonIniciarPartida.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 11));
 		buttonIniciarPartida.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -157,6 +162,7 @@ public class VentanaInicio extends JFrame {
 		panel_2.add(buttonIniciarPartida, gbc_buttonIniciarPartida);
 		
 		JButton buttonSalir = new JButton("Salir");
+		buttonSalir.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 11));
 		buttonSalir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
