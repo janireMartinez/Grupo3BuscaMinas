@@ -62,6 +62,7 @@ public class ZonaVacia extends Casilla {
 		Si el número es 0 (es decir, no hay minas alrededor), revela automáticamente las casillas vecinas de forma recursiva.
      * 
      */
+    
     @Override
     public void revelar() {
         if (!estaRevelada && !tieneBandera) {
@@ -85,8 +86,12 @@ public class ZonaVacia extends Casilla {
      */
     private void mostrarNumero() {
     	imagenesNumeros();
+    	boton.setText(""); // Limpiar texto
+        boton.setIcon(null); // Limpiar cualquier icono anterior
+
         if (numero >= 0 && numero <= 8 && numeroCasilla[numero] != null) {
             boton.setIcon(numeroCasilla[numero]);
+            boton.setDisabledIcon(numeroCasilla[numero]);
         } else {
             boton.setText(String.valueOf(numero));
         }

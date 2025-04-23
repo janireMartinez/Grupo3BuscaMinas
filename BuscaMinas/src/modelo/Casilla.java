@@ -1,7 +1,5 @@
 package modelo;
 
-import java.awt.Dimension;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -28,12 +26,7 @@ public abstract class Casilla {
     //El atributo tieneBandera marca si el jugador ha puesto una bandera sobre ella (clic derecho).
     protected boolean tieneBandera;
     //El atributo boton  el componente gráfico (JButton) que representa esta casilla en la interfaz visual.
-    protected JButton boton; 
-    
-    protected static ImageIcon casillaSinRevelar = new ImageIcon("images/blank.gif");
-    protected static ImageIcon bombFlagged = new ImageIcon("images/bombflagged.gif"); 
-    protected static ImageIcon bombRevealed = new ImageIcon("images/bombrevealed.gif");
-    protected static ImageIcon bombDeath = new ImageIcon("images/bombdeath.gif");
+    protected JButton boton; // Botón gráfico
     
     //El constructor inicializa los valores lógicos por defecto y crea un nuevo botón (JButton) que será mostrado en el tablero gráfico.
     public Casilla() {
@@ -41,14 +34,23 @@ public abstract class Casilla {
         this.estaRevelada = false;
         this.tieneBandera = false;
         this.boton = new JButton();
-        
-        actualizarIcono();
     }
     //Devuelve el botón asociado a esta casilla, útil para manipularlo desde otras clases (por ejemplo, para añadirle eventos).
     public JButton getBoton() {
         return boton;
     }
-    
+    //Métodos "getters" para consultar el estado actual de la casilla:
+    public boolean tieneMina() {
+        return tieneMina;
+    }
+
+    public boolean estaRevelada() {
+        return estaRevelada;
+    }
+
+    public boolean estaMarcada() {
+        return tieneBandera;
+    }
     //Marca esta casilla como que contiene una mina. Se usa durante la generación del tablero.
     public void ponerMina() {
         this.tieneMina = true;
@@ -60,22 +62,15 @@ public abstract class Casilla {
     //El uso de ImageIcon("images/bombflagged.gif") permite que la bandera se muestre visualmente en el botón.
     public void revelarConBandera() {
         if (!estaRevelada) {
-            tieneBandera = !tieneBandera;
-            actualizarIcono();
+            if (!tieneBandera) {
+                boton.setIcon(new ImageIcon("images/bombflagged.gif"));
+                tieneBandera = true;
+            } else {
+                boton.setIcon(null);
+                tieneBandera = false;
+            }
         }
     }
-    
-    protected void actualizarIcono() {
-    	if (estaRevelada) {
-    	
-    	} else if (tieneBandera) {
-    		boton.setIcon(bombFlagged);
-    	} else {
-    		boton.setIcon(casillaSinRevelar);
-    	}
-    	boton.setText("");
-    }
-
     //Se llamará cuando el jugador haga clic sobre una casilla (acción principal). La implementación será distinta según el tipo de casilla (mina, vacía...).
     public abstract void revelar();
     //Se usan para asociar y consultar cuántas minas rodean una casilla vacía. En ZonaVacia se implementarán, en ZonaMina pueden quedarse vacíos o retornar 0.
@@ -85,18 +80,6 @@ public abstract class Casilla {
     //Método útil para hacer comprobaciones sin usar instanceof. Por defecto retorna false, pero ZonaVacia lo sobreescribirá devolviendo true.
     public boolean esZonaVacia() {
         return false; // Sobreescrito en ZonaVacia
-    }
-    
-    public boolean tieneMina() {
-        return tieneMina;
-    }
-
-    public boolean estaRevelada() {
-        return estaRevelada;
-    }
-
-    public boolean estaMarcada() {
-        return tieneBandera;
     }
 }
 
