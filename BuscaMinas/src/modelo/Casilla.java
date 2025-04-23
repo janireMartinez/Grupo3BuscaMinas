@@ -34,6 +34,8 @@ public abstract class Casilla {
         this.estaRevelada = false;
         this.tieneBandera = false;
         this.boton = new JButton();
+        
+        boton.setIcon(new ImageIcon("images/blank.gif"));
     }
     //Devuelve el botón asociado a esta casilla, útil para manipularlo desde otras clases (por ejemplo, para añadirle eventos).
     public JButton getBoton() {
@@ -66,7 +68,7 @@ public abstract class Casilla {
                 boton.setIcon(new ImageIcon("images/bombflagged.gif"));
                 tieneBandera = true;
             } else {
-                boton.setIcon(null);
+                boton.setIcon(new ImageIcon("images/blank.gif"));
                 tieneBandera = false;
             }
         }
