@@ -31,7 +31,6 @@ public class Main {
 	public static void cambioJuegoRanking() {
 		ventanaRanking = new VentanaRanking(); // pasar por parametro todos las variables diferente que haya
 		ventanaRanking.setVisible(true);
-		ventanaJuego.setVisible(false);
 	}
 	
 	// pasar de la venta ranking a inicio

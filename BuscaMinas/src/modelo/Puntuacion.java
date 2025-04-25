@@ -23,7 +23,7 @@ public class Puntuacion implements Comparable<Puntuacion>{
 	}
 	
 	public static Puntuacion convertirObjeto(String linea) {
-		String[] divisor = linea.split("//|"); 
+		String[] divisor = linea.split("\\|"); 
 		if (divisor.length == 3) {
 			String nombre = divisor[0];
 			double puntuacion = Double.parseDouble(divisor[1]);

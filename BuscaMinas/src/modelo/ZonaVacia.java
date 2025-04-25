@@ -69,14 +69,6 @@ public class ZonaVacia extends Casilla {
             estaRevelada = true;
             boton.setEnabled(false);
             mostrarNumero();
-
-            if (numero == 0 && adyacentes != null) {
-                for (Casilla c : adyacentes) {
-                    if (!c.estaRevelada()) {
-                        c.revelar();
-                    }
-                }
-            }
         }
     }
     /*
@@ -102,7 +94,11 @@ public class ZonaVacia extends Casilla {
         this.numero = n;
     }
 
-    @Override
+    public List<Casilla> getAdyacentes() {
+		return adyacentes;
+	}
+
+	@Override
     public int getNumeroMinasAlrededor() {
         return this.numero;
     }

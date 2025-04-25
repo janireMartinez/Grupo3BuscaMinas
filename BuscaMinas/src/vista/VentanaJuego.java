@@ -20,6 +20,7 @@ import javax.swing.Timer;
 import controlador.Main;
 import modelo.Casilla;
 import modelo.Dificultad;
+import modelo.Ranking;
 import modelo.TableroEntero;
 
 import java.awt.event.ActionListener;
@@ -40,9 +41,16 @@ public class VentanaJuego extends JFrame {
     private static final long serialVersionUID = 1L;
     private TableroEntero tablero;
     private JLabel panelBombas;
+    private String nombre;
+    private Dificultad dificultad;
+    private Ranking ranking;
 
 
     public VentanaJuego(String nombre, Dificultad dificultad) {
+    	this.nombre = nombre;
+    	this.dificultad = dificultad;
+    	this.ranking = Ranking.getInstance();
+    	
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         int buttonSize = 30; 
         int filas = dificultad.getFilas();
@@ -156,15 +164,28 @@ public class VentanaJuego extends JFrame {
         							Main.apareceVentanaPerder(nombre, dificultad, VentanaJuego.this);
         						} else if (tablero.ganar()) {
         							timer.stop();
-        							JOptionPane.showMessageDialog(VentanaJuego.this, "Has ganado");
         							tablero.setJuegoAcabado(true);
-        						}
+        							int cantidadMinas = dificultad.getBombas();
+        							int minasActivadas = tablero.getMinasMarcadas();
+        							int coeficienteDificultad = dificultad.coeficientePuntuacion();
+        							double puntuacion = 0.0;
+        							
+        							if (segundos > 0) {
+        								puntuacion = (double) (cantidadMinas - minasActivadas) * coeficienteDificultad / segundos;
+        								puntuacion = Math.round(puntuacion * 100.0) / 100.0;
+        							}
+        							ranking.calcularPuntuacion(nombre, cantidadMinas, minasActivadas, coeficienteDificultad, segundos);
+        							Main.cambioJuegoRanking();
+        							dispose();
+        						} 
+        						panel.revalidate();
+                                panel.repaint();
         					} else if (e.getButton() == MouseEvent.BUTTON3) {
         						tablero.marcarCasilla(fila, columna);
         						panelBombas.setText("Bombas: " + tablero.getBombasRestantes());
+        						panel.revalidate();
+                                panel.repaint();
         					}
-        					panel.revalidate();
-        					panel.repaint();
         				}
         			}
         			

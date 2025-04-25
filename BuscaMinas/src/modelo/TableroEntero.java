@@ -118,6 +118,20 @@ public class TableroEntero {
 				juegoAcabado = true;
 			} else {
 				casillasReveladas++;
+				if (casilla[fila][columna].esZonaVacia() && casilla[fila][columna].getNumeroMinasAlrededor() == 0) {
+                    List<Casilla> adyacentes = ((ZonaVacia) casilla[fila][columna]).getAdyacentes();
+                    if (adyacentes != null) {
+                        for (Casilla c : adyacentes) {
+                            // Encontrar las coordenadas de la casilla adyacente
+                            for (int i = 0; i < filas; i++) {
+                                for (int j = 0; j < columnas; j++) {
+                                    if (casilla[i][j] == c && !c.estaRevelada() && !c.estaMarcada() && !c.tieneMina()) {
+                                        revelarCasilla(i, j);
+                                    }
+                                }
+                            }
+                        }
+                    }}
 			}
 		}
 	}
@@ -141,7 +155,8 @@ public class TableroEntero {
 	}
 	
 	public boolean ganar() {
-		return casillasReveladas == (filas * columnas - bombas);
+		boolean ganar = casillasReveladas == (filas * columnas - bombas);
+		return ganar;
 	}
 	
 	public int getBombas() {

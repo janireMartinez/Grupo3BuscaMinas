@@ -37,7 +37,7 @@ public class VentanaRanking extends JFrame {
     private JLabel Tiempo1, Tiempo2, Tiempo3, Tiempo4, Tiempo5;
 
 	public VentanaRanking() { 
-		ranking = new Ranking();
+		ranking = Ranking.getInstance();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -326,6 +326,8 @@ public class VentanaRanking extends JFrame {
                 tiempoLabels[i].setText("-");
             }
         }
+        contentPane.revalidate();
+        contentPane.repaint();
 	}
 
 }
