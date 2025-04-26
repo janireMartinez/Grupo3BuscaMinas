@@ -37,12 +37,12 @@ public class ZonaVacia extends Casilla {
     public static void imagenesNumeros() {
     	if (casillaAbierta == null || numeroCasilla == null) {
     		try {
-    			casillaAbierta = new ImageIcon("images/open0.gif");
+    			casillaAbierta = new ImageIcon(ZonaVacia.class.getResource("/images/open0.gif"));
     			numeroCasilla = new ImageIcon[9];
     			numeroCasilla[0] = casillaAbierta;
     			
     			for (int i = 1; i <= 8; i++) {
-    				numeroCasilla[i] = new ImageIcon("images/open"+i+".gif");
+    				numeroCasilla[i] = new ImageIcon(ZonaVacia.class.getResource("/images/open"+i+".gif"));
     			}
     			
     		} catch (Exception e) {

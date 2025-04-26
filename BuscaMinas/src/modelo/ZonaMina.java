@@ -16,7 +16,7 @@ public class ZonaMina extends Casilla{
         	estaRevelada = true;
         	boton.setText(""); // Limpiar texto por si acaso
             boton.setIcon(null); // Asegúrate de que no haya iconos previos
-            ImageIcon minaIcono = new ImageIcon("images/bombdeath.gif");
+            ImageIcon minaIcono = new ImageIcon(ZonaMina.class.getResource("/images/bombdeath.gif"));
             boton.setIcon(minaIcono);
             boton.setDisabledIcon(minaIcono);
             boton.setEnabled(false);
