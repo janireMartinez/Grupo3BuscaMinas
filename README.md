@@ -275,6 +275,4 @@
 						--Bordes (por ejemplo, MatteBorder) para que los datos estén visualmente separados.
 						--Fuentes en negrita para títulos.
 ##Integrantes del grupo:
- Iniciamos siendo 4 que eramos : Janire Martinez, Iván Dobarrio, Aritz Alvarez y Jurgi Adame pero durante el desarrollo del juego Aritz y Jurgi dejaron de estar tan al tanto del 
- desarrollo y lo hemos acabado haciendo Janire Martinez y yo (Ivan Dobarrio) para cumplir la fecha de entrega.
-					
+ Janire Martinez,Aritz Alvarez,Ivan Dobarrio,Jurgi Adame
