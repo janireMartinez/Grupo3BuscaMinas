@@ -1,59 +1,58 @@
 # Grupo3BuscaMinas
 # Buscaminas Colaborativo
 
-##Instrucciones de instalación y ejecucción
-	###Requisitos previos
+Instrucciones de instalación y ejecucción
+	-Requisitos previos
 		Asegurarse de instalar los siguientes programas en tu sistema:
 			-Java Development Kit (JDK) 11 o superior: Necesario para compilar y ejecutar el proyecto
 			-Eclipse IDE: Para facilitar el acceso,edición y ejecucción del código aunque puede llegar a usarse cualquier IDE.
 	
-	###Clonar el repositorio
-		####Opción 1:
+	-Clonar el repositorio
+		--Opción 1:
 				-Si está en Eclipse, sin abrir la terminal vaya a Window>Show View>Other>Git>Git Repositories y despues pinche en la
 				opción de Clone a Git Repository and add the clone to this view, despues seleccione la opcion de Clone URI y introduzca 
 				la direccion de Github del repositorio y sus credenciales, despues de eso tendras que seleccionar donde poner el proyecto
-		### Opción 2
+		--Opción 2
 				-Abre una terminal o consola en la maquina local
 				-Clona el repositorio de Github en la maquina el siguiente comando 
 				"git clone https://github.com/tu-usuario/tu-repositorio.git" Sustituye tu-usuario y tu-repositorio 
 				por tu nombre de usuario y el nombre de tu repositorio en GitHub, respectivamente.
-	###Ejecucción 
+	-Ejecucción 
 				-Ejecute el Main para poder probar el juego
 
-##Breve explicación de la estructura del código.
+Breve explicación de la estructura del código.
 
-	###Package: controlador
-		-Archivo: Main.java
-		-Responsabilidad principal:
-			Se encarga de coordinar las ventanas de la aplicacion Buscaminas, ademas tambien se encarga de gestionar los cambios entre
-			pantallas(Inicio,Juego,Ranking y Perder)
-		-Componentes principales:
-			--Atributos privados estáticos:
-				--ventanaInicio, ventanaJuego, ventanaRanking, ventanaPerder
-				--Propósito: mantener una referencia a cada ventana para mostrarla o cerrarla cuando sea necesario.
-			--Método main:
-				--Punto de entrada de la aplicación.
-				--Crea una instancia de la VentanaInicio y la muestra.
-			--Métodos de cambio de ventana:
-				--cambioInicioJuego(nombre, dificultad)
+	-Package: controlador
+		--Archivo: Main.java
+			--Responsabilidad principal:
+				Se encarga de coordinar las ventanas de la aplicacion Buscaminas, ademas tambien se encarga de gestionar los cambios entre
+				pantallas(Inicio,Juego,Ranking y Perder)
+		--Componentes principales:
+			-Atributos privados estáticos:
+				-ventanaInicio, ventanaJuego, ventanaRanking, ventanaPerder
+				-Propósito: mantener una referencia a cada ventana para mostrarla o cerrarla cuando sea necesario.
+			-Método main:
+				-Punto de entrada de la aplicación.
+				-Crea una instancia de la VentanaInicio y la muestra.
+			-Métodos de cambio de ventana:
+				-cambioInicioJuego(nombre, dificultad)
 					--Cambia de la ventana de inicio al tablero de juego.
-				--cambioJuegoRanking()
+				-cambioJuegoRanking()
 					--Muestra el ranking después de jugar.
-				--cambioRankingInico()
+				-cambioRankingInico()
 					--Permite volver del ranking al inicio.
-				--cerrarSesionRanking()
+				-cerrarSesionRanking()
 					--Cierra la ventana de ranking.
-			--Manejo de la derrota:
-				--apareceVentanaPerder(nombre, dificultad, ventanaJuego)
+			-Manejo de la derrota:
+				-apareceVentanaPerder(nombre, dificultad, ventanaJuego)
 					--Muestra una ventana especial cuando el jugador pierde.
-				--cerrarSesion(nombre, dificultad, ventanaJuego)
+				-cerrarSesion(nombre, dificultad, ventanaJuego)
 					--Cierra las ventanas de juego y de derrota, y vuelve a Inicio.
 					
-	###Package: modelo
+	-Package: modelo
 		-Este paquete se encarga de contener la lógica del juego Buscaminas: las casillas,las dificultades del tablero, la puntuación,ranking,el tablero, zona mina y zona vacia
 			--Clase Abstracta Casilla:
-				---Descripción:
-					--Clase base para las casillas del tablero (mina o vacía).
+				---Descripción:Clase base para las casillas del tablero (mina o vacía).
 							--Gestiona:
 								--Si una casilla tiene mina.
 								--Si está revelada.
@@ -274,5 +273,5 @@
 					--Estilo
 						--Bordes (por ejemplo, MatteBorder) para que los datos estén visualmente separados.
 						--Fuentes en negrita para títulos.
-##Integrantes del grupo:
+Integrantes del grupo:
  Janire Martinez,Aritz Alvarez,Ivan Dobarrio,Jurgi Adame
