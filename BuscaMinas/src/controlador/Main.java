@@ -22,20 +22,20 @@ public class Main {
 	}
 	// pasar de la inicial a juego
 	public static void cambioInicioJuego(String nombre, Dificultad dificultad) {
-		ventanaJuego = new VentanaJuego(nombre, dificultad); // pasar por parametro todos las variables diferente que haya
+		ventanaJuego = new VentanaJuego(nombre, dificultad); 
 		ventanaJuego.setVisible(true);
 		ventanaInicio.setVisible(false);
 	}
 	
 	// pasar de la venta juego a ranking
 	public static void cambioJuegoRanking() {
-		ventanaRanking = new VentanaRanking(); // pasar por parametro todos las variables diferente que haya
+		ventanaRanking = new VentanaRanking();
 		ventanaRanking.setVisible(true);
 	}
 	
 	// pasar de la venta ranking a inicio
 	public static void cambioRankingInico() {
-		ventanaInicio = new VentanaInicio(); // pasar por parametro todos las variables diferente que haya
+		ventanaInicio = new VentanaInicio(); 
 		ventanaInicio.setVisible(true);
 		ventanaRanking.setVisible(false);
 	}

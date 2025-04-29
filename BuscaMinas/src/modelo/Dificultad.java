@@ -10,9 +10,9 @@ public enum Dificultad {
 	private final int bombas;
 	
 	Dificultad(int filas, int columnas, int bombas) {
-		this.filas=filas;
-		this.columnas=columnas;
-		this.bombas=bombas;
+		this.filas = filas;
+		this.columnas = columnas;
+		this.bombas = bombas;
 	}
 
 	public int getFilas() {

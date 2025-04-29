@@ -3,12 +3,12 @@ package modelo;
 public class Puntuacion implements Comparable<Puntuacion>{
 
 	private String nombre;
-	private double puntuacion;
+	private int puntuacion;
 	private int tiempo;
 	
-	public Puntuacion(String nombre, double puntuacion, int tiempo) {
+	public Puntuacion(String nombre, int puntuacion, int tiempo) {
 		this.nombre = nombre;
-		this.puntuacion = Math.round(puntuacion * 100.0) / 100.0;
+		this.puntuacion = puntuacion;
 		this.tiempo = tiempo;
 	}
 
@@ -26,7 +26,7 @@ public class Puntuacion implements Comparable<Puntuacion>{
 		String[] divisor = linea.split("\\|"); 
 		if (divisor.length == 3) {
 			String nombre = divisor[0];
-			double puntuacion = Double.parseDouble(divisor[1]);
+			int puntuacion = Integer.parseInt(divisor[1]);
 			int tiempo = Integer.parseInt(divisor[2]);
 			return new Puntuacion(nombre, puntuacion, tiempo);
 		}
@@ -37,7 +37,7 @@ public class Puntuacion implements Comparable<Puntuacion>{
 		return nombre;
 	}
 
-	public double getPuntuacion() {
+	public int getPuntuacion() {
 		return puntuacion;
 	}
 

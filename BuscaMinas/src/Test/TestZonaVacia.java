@@ -16,13 +16,8 @@ class TestZonaVacia {
 
     @Test
     void testRevelarZonaVacia() {
-        // Revela la zona vacía
         zonaVacia.revelar();
-        
-        // Verifica que la zona esté revelada
         assertTrue(zonaVacia.estaRevelada(), "La zona vacía debe estar revelada");
-
-        // Verifica que el ícono del botón sea null después de revelar (si se espera que sea así)
         assertNull(zonaVacia.getBoton().getIcon(), "El ícono del botón debe ser null para una zona vacía");
     }
 

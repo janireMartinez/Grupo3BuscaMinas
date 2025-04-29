@@ -12,7 +12,7 @@ class TestCasilla {
 
     @BeforeEach
     void setUp() {
-        casilla = new ZonaVacia(0); // Usamos una subclase concreta
+        casilla = new ZonaVacia(0);
     }
 
     @Test

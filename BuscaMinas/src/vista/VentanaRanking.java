@@ -278,7 +278,6 @@ public class VentanaRanking extends JFrame {
 		gbl_panel_5.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		panel_5.setLayout(gbl_panel_5);
 		
-		//BOTON PARA VOLVER AL LA VENTANA INICIAL
 		JButton BotonInicio = new JButton("Volver al inicio");
 		BotonInicio.addMouseListener(new MouseAdapter() {
 			@Override
@@ -292,7 +291,6 @@ public class VentanaRanking extends JFrame {
 		gbc_BotonInicio.gridy = 0;
 		panel_5.add(BotonInicio, gbc_BotonInicio);
 		
-		//BOTON PARA CERRAR EL JUEGO POR COMPLETO
 		JButton BotonCerrar = new JButton("Cerrar sesion");
 		BotonCerrar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -318,7 +316,7 @@ public class VentanaRanking extends JFrame {
             if (i < puntuaciones.size()) {
                 Puntuacion p = puntuaciones.get(i);
                 rankingLabels[i].setText(p.getNombre());
-                puntuacionLabels[i].setText(String.format("%.2f", p.getPuntuacion()));
+                puntuacionLabels[i].setText(String.valueOf(p.getPuntuacion()));
                 tiempoLabels[i].setText(p.getTiempo() + " s");
             } else {
                 rankingLabels[i].setText("-");

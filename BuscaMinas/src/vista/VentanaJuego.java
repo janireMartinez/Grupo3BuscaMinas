@@ -62,7 +62,6 @@ public class VentanaJuego extends JFrame {
         int margenes = 20; 
         int windowWidth = tableroWidth + 30; 
         int windowHeight = tableroHeight + panelArribaHeight + labelNombreHeight + margenes;
-        //setBounds(100, 100, windowWidth, windowHeight);
         GridBagLayout gridBagLayout = new GridBagLayout();
         gridBagLayout.columnWidths = new int[]{0, 0};
         gridBagLayout.rowHeights = new int[]{labelNombreHeight, panelArribaHeight, tableroHeight};
@@ -88,13 +87,13 @@ public class VentanaJuego extends JFrame {
 
         JPanel panelDificultadConCombo = new JPanel(new BorderLayout());
 
-        JLabel labelDificultad = new JLabel("Dificultad:");
+        JLabel labelDificultad = new JLabel("");
         labelDificultad.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 11));
         labelDificultad.setHorizontalAlignment(SwingConstants.CENTER);
         panelDificultadConCombo.add(labelDificultad, BorderLayout.NORTH);
 
         JComboBox<Dificultad> comboDificultad = new JComboBox<>(Dificultad.values());
-        comboDificultad.setSelectedItem(dificultad); // selecciona la dificultad actual
+        comboDificultad.setSelectedItem(dificultad); 
         panelDificultadConCombo.add(comboDificultad, BorderLayout.SOUTH);
 
         panelArriba.add(panelDificultadConCombo);
@@ -104,9 +103,9 @@ public class VentanaJuego extends JFrame {
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     Dificultad nuevaDificultad = (Dificultad) comboDificultad.getSelectedItem();
-                    dispose(); // Cierra la ventana actual
-                    timer.stop(); // Detiene el temporizador
-                    new VentanaJuego(nombre, nuevaDificultad).setVisible(true); // Abre una nueva ventana con la dificultad elegida
+                    dispose(); 
+                    timer.stop(); 
+                    new VentanaJuego(nombre, nuevaDificultad).setVisible(true);
                 }
             }
         });
@@ -115,7 +114,7 @@ public class VentanaJuego extends JFrame {
         panelTiempo.setPreferredSize(new Dimension(100, 40));
         panelTiempo.setMinimumSize(new Dimension(100, 40));
         panelTiempo.setMaximumSize(new Dimension(100, 40));
-        panelArriba.add(panelTiempo); // <-- Esto es lo que falta
+        panelArriba.add(panelTiempo); 
 
 
 
@@ -126,15 +125,13 @@ public class VentanaJuego extends JFrame {
         gbc_panelArriba.gridy = 1;
         getContentPane().add(panelArriba, gbc_panelArriba);
         
-        //CREAR TABLERO CON LA DIFICULTAD SELECIONADA 
         tablero = new TableroEntero(dificultad);
         
         JPanel panel = new JPanel(new GridLayout(tablero.getFilas(), tablero.getColumnas()));
         panel.setPreferredSize(new Dimension(tableroWidth, tableroHeight));
 
-        // Contenedor con márgenes
         JPanel panelConMargenes = new JPanel(new BorderLayout());
-        panelConMargenes.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20)); // top, left, bottom, right
+        panelConMargenes.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20)); 
         panelConMargenes.add(panel, BorderLayout.CENTER);
 
         GridBagConstraints gbc_panel = new GridBagConstraints();
@@ -145,7 +142,6 @@ public class VentanaJuego extends JFrame {
         getContentPane().add(panelConMargenes, gbc_panel);
 
         
-        //PARA AÑADIR LOS BOTONES AL TABLERO
         Casilla[][] casilla = tablero.getCasilla();
         for (int i = 0; i < tablero.getFilas(); i++) {
         	for	(int j = 0; j < tablero.getColumnas(); j++) {
@@ -165,14 +161,15 @@ public class VentanaJuego extends JFrame {
         						} else if (tablero.ganar()) {
         							timer.stop();
         							tablero.setJuegoAcabado(true);
-        							int cantidadMinas = dificultad.getBombas();
+        							int casillaDescubierta = dificultad.getFilas() * dificultad.getColumnas() - 10;
+        							int cantidadMinas = casillaDescubierta;
         							int minasActivadas = tablero.getMinasMarcadas();
         							int coeficienteDificultad = dificultad.coeficientePuntuacion();
-        							double puntuacion = 0.0;
+        							int puntuacion = 0;
         							
         							if (segundos > 0) {
-        								puntuacion = (double) (cantidadMinas - minasActivadas) * coeficienteDificultad / segundos;
-        								puntuacion = Math.round(puntuacion * 100.0) / 100.0;
+        								puntuacion = (cantidadMinas - minasActivadas) * coeficienteDificultad / segundos;
+        								
         							}
         							ranking.calcularPuntuacion(nombre, cantidadMinas, minasActivadas, coeficienteDificultad, segundos);
         							Main.cambioJuegoRanking();
@@ -197,8 +194,8 @@ public class VentanaJuego extends JFrame {
 		panel.repaint();
 
         iniciarTemporizador();
-        pack(); // Ajusta la ventana al contenido
-        setLocationRelativeTo(null); // Centra la ventana en la pantalla
+        pack();
+        setLocationRelativeTo(null);
     }
     
     private void iniciarTemporizador() {
@@ -211,23 +208,19 @@ public class VentanaJuego extends JFrame {
     
     private void actualizarTiempo() {
 
-    	String tiempoStr = String.format("%03d", segundos);  // para poner los segundos 001 002 003..   https://stackoverflow.com/questions/6034523/format-an-integer-using-java-string-format
+    	String tiempoStr = String.format("%03d", segundos); 
 
-        // cargar las imágenes según los caracteres ordenados 
-        ImageIcon img1 = new ImageIcon("images/time" + tiempoStr.charAt(0) + ".gif");
-        ImageIcon img2 = new ImageIcon("images/time" + tiempoStr.charAt(1) + ".gif");
-        ImageIcon img3 = new ImageIcon("images/time" + tiempoStr.charAt(2) + ".gif");
+    	ImageIcon img1 = new ImageIcon(VentanaJuego.class.getResource("/images/time" + tiempoStr.charAt(0) + ".gif"));
+        ImageIcon img2 = new ImageIcon(VentanaJuego.class.getResource("/images/time" + tiempoStr.charAt(1) + ".gif"));
+        ImageIcon img3 = new ImageIcon(VentanaJuego.class.getResource("/images/time" + tiempoStr.charAt(2) + ".gif"));
 
-        // limpiarlo
         panelTiempo.removeAll();
         panelTiempo.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-       // imagenes
         panelTiempo.add(new JLabel(img1));
         panelTiempo.add(new JLabel(img2));
         panelTiempo.add(new JLabel(img3));
 
-        // Refrescar el panel           https://stackoverflow.com/questions/1097366/java-swing-revalidate-vs-repaint
         panelTiempo.revalidate();
         panelTiempo.repaint();
     }

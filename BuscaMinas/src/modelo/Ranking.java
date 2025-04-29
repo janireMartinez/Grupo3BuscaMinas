@@ -25,10 +25,12 @@ public class Ranking {
 	}
 
 	public void calcularPuntuacion(String nombre, int c, int m, int d, int tiempo) {
-		double puntuacion = 0.0;
+		int puntuacion = 0;
 
 		if (tiempo > 0) {
-			puntuacion = (double) (c - m) + d / tiempo;
+			int base = (c - m) * 10;
+			int tiempoCalculo = tiempo / 2;
+			puntuacion = (base - tiempoCalculo) * d;
 		}
 
 		Puntuacion p = new Puntuacion(nombre, puntuacion, tiempo);

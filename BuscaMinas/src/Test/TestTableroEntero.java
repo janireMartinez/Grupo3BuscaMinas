@@ -12,7 +12,7 @@ class TestTableroEntero {
 
     @BeforeEach
     void setUp() {
-        tablero = new TableroEntero(Dificultad.FACIL); // Usamos dificultad fácil como ejemplo
+        tablero = new TableroEntero(Dificultad.FACIL); 
     }
 
     @Test
@@ -25,17 +25,12 @@ class TestTableroEntero {
 
     @Test
     void testColocarMinas() {
-        // Aquí deberíamos verificar si las minas han sido colocadas correctamente,
-        // pero el código necesita mayor lógica para hacer este tipo de pruebas.
         tablero.colocarMinas(); 
-        // Este test es un poco más complicado porque depende de la aleatoriedad, 
-        // pero podrías realizar pruebas para verificar la cantidad de minas.
     }
 
     @Test
     void testContarMinas() {
-        // Aquí se asume que hay minas colocadas en las casillas adecuadas
-        int minas = tablero.contarMinas(0, 0); // Llamada ejemplo, debes verificar la posición
+        int minas = tablero.contarMinas(0, 0); 
         assertTrue(minas >= 0 && minas <= 8, "Debe haber un número de minas alrededor");
     }
 
@@ -47,13 +42,11 @@ class TestTableroEntero {
 
     @Test
     void testGanar() {
-        // Aquí deberías realizar una prueba para verificar si el juego se ha ganado
         assertTrue(tablero.ganar(), "Debe devolver true si se ha ganado");
     }
 
     @Test
     void testPerder() {
-        // Verifica si el juego se pierde correctamente al hacer clic en una mina
         assertTrue(tablero.perder(0, 0), "Debe devolver true si se ha perdido");
     }
 }

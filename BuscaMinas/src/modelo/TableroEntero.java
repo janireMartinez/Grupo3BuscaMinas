@@ -33,16 +33,14 @@ public class TableroEntero {
 		casillasAdyacentes();
 	}
 	
-	//METODO PARA INICIALIZAR EL TABLERO
 	public void mostrarTablero() {
 		for(int i = 0; i < filas; i++) {
 			for (int j = 0; j < columnas; j++) {
-				casilla[i][j] = new ZonaVacia(0); //el constructor de zonaVacia (int) 
+				casilla[i][j] = new ZonaVacia(0); 
 ;			}
 		}
 	}
 	
-	//METODO QUE SE ENCARGA DE RANDOMIZAR LAS BOMBAS EN EL TABLERO
 	public void colocarMinas() {
 		Random random = new Random();
 		
@@ -50,14 +48,13 @@ public class TableroEntero {
 		while (bombasColocadas < bombas) {
 			int fila = random.nextInt(filas);
 			int columna = random.nextInt(columnas);
-			if (!casilla[fila][columna].tieneMina()) { //tieneMina() hace referencia al getter de la clase casilla para saber si hay ya una bomba o no
+			if (!casilla[fila][columna].tieneMina()) { 
 				casilla[fila][columna] = new ZonaMina(); 
 				bombasColocadas++;
 			}
 		}
 	}
 	
-	//CONFIGURA LAS CASILLAS ADYACENTES PARA CADA CASILLA DE ZONAVACIA
 	public void casillasAdyacentes() {
 		for (int i = 0; i < filas; i++) {
 			for (int j = 0; j < columnas; j++) {
@@ -78,14 +75,13 @@ public class TableroEntero {
 		}
 	}
 	
-	//CALCULA CUANTAS MINAS HAY ALREDEDOR DE UNA CASILLA
 	public int contarMinas(int fila, int columna) {
 		int cont = 0;
-		for (int i = -1; i <= 1; i++) { // hace un recorrido de -1 a 1, en donde -1 es fila anterior, 0 fila actual y 1 fila siguiente
+		for (int i = -1; i <= 1; i++) { 
 			for (int j = -1; j <= 1; j++) {
 				int filaNueva = fila + i; 
 				int columnaNueva = columna + j;
-				if (validar(filaNueva, columnaNueva) && casilla[filaNueva][columnaNueva].tieneMina()) { //tieneMina() hace referencia al getter de la clase casilla para saber si hay ya una bomba o no
+				if (validar(filaNueva, columnaNueva) && casilla[filaNueva][columnaNueva].tieneMina()) { 
 					cont++;
 				}
 			}
@@ -93,26 +89,23 @@ public class TableroEntero {
 		return cont;
 	}
 	
-	//VERIFICA QUE LAS COORDENADAS ESTAN DENTRO DEL TABLERO
 	public boolean validar(int fila, int columna) {
 		return fila >= 0 && fila < filas && columna >= 0 && columna < columnas;
 	}
 	
-	// Recorre el tabalero
 	public void calcularMinas() {
 		for(int i = 0; i < filas; i++) {
 			for (int j = 0; j < columnas; j++) {
-				if (casilla[i][j].esZonaVacia()) { //tieneMina() hace referencia al getter de la clase casilla para saber si hay ya una bomba o no
+				if (casilla[i][j].esZonaVacia()) { 
 					int bombas = contarMinas(i, j);
-					casilla[i][j].setNumeroMinasAlrededor(bombas); //Almacena el numero de minas cercanas para mostrarlo caundo se revele
+					casilla[i][j].setNumeroMinasAlrededor(bombas); 
 				}
 			} 
 		}
 	}
 	
-	// REVELA UNA CASILLA EN LA POSICION DE LOS PARAMETRO
 	public void revelarCasilla(int fila, int columna) {
-		if (!juegoAcabado && validar(fila, columna) && !casilla[fila][columna].estaRevelada() && !casilla[fila][columna].estaMarcada()) { //estaRevelada y estaMarcada hace referencia a la clase casilla
+		if (!juegoAcabado && validar(fila, columna) && !casilla[fila][columna].estaRevelada() && !casilla[fila][columna].estaMarcada()) { 
 			casilla[fila][columna].revelar();
 			if (casilla[fila][columna].tieneMina()) {
 				juegoAcabado = true;
@@ -122,7 +115,6 @@ public class TableroEntero {
                     List<Casilla> adyacentes = ((ZonaVacia) casilla[fila][columna]).getAdyacentes();
                     if (adyacentes != null) {
                         for (Casilla c : adyacentes) {
-                            // Encontrar las coordenadas de la casilla adyacente
                             for (int i = 0; i < filas; i++) {
                                 for (int j = 0; j < columnas; j++) {
                                     if (casilla[i][j] == c && !c.estaRevelada() && !c.estaMarcada() && !c.tieneMina()) {
@@ -149,7 +141,6 @@ public class TableroEntero {
 		}
 	}
 	
-	//SI EL JUGADOR REVELA UNA CASILLA CN BOMBA PIERDE
 	public boolean perder(int fila, int columna) {
 		return casilla[fila][columna].tieneMina() && casilla[fila][columna].estaRevelada();
 	}
