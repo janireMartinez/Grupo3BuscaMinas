@@ -82,6 +82,7 @@ public class VentanaPerder extends JFrame {
 		panel.setLayout(gbl_panel);
 		
 		JButton botonSi = new JButton("Si");
+		botonSi.setBackground(new Color(193, 238, 205));
 		botonSi.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 11));
 		botonSi.setPreferredSize(new Dimension(80, 30));
 		botonSi.addMouseListener(new MouseAdapter() {
