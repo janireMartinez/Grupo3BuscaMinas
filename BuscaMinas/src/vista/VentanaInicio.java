@@ -22,6 +22,7 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Font;
+import java.awt.Color;
 
 public class VentanaInicio extends JFrame {
 
@@ -34,6 +35,7 @@ public class VentanaInicio extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(193, 238, 205));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -45,6 +47,7 @@ public class VentanaInicio extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(193, 238, 205));
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.insets = new Insets(0, 0, 5, 5);
 		gbc_panel.fill = GridBagConstraints.BOTH;
@@ -59,7 +62,7 @@ public class VentanaInicio extends JFrame {
 		panel.setLayout(gbl_panel);
 		
 		JLabel usuarioLabel = new JLabel("Nuevo usuario: ");
-		usuarioLabel.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 11));
+		usuarioLabel.setFont(new Font("Yu Gothic Medium", Font.BOLD, 11));
 		GridBagConstraints gbc_usuarioLabel = new GridBagConstraints();
 		gbc_usuarioLabel.insets = new Insets(0, 0, 0, 5);
 		gbc_usuarioLabel.anchor = GridBagConstraints.EAST;
@@ -68,6 +71,7 @@ public class VentanaInicio extends JFrame {
 		panel.add(usuarioLabel, gbc_usuarioLabel);
 		
 		textUsuario = new JTextField();
+		textUsuario.setForeground(new Color(0, 128, 0));
 		GridBagConstraints gbc_textUsuario = new GridBagConstraints();
 		gbc_textUsuario.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textUsuario.gridx = 1;
@@ -76,6 +80,7 @@ public class VentanaInicio extends JFrame {
 		textUsuario.setColumns(10);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(193, 238, 205));
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
 		gbc_panel_1.insets = new Insets(0, 0, 5, 5);
 		gbc_panel_1.fill = GridBagConstraints.BOTH;
@@ -90,7 +95,7 @@ public class VentanaInicio extends JFrame {
 		panel_1.setLayout(gbl_panel_1);
 		
 		JLabel dificultad = new JLabel("Seleccionar dificultad:");
-		dificultad.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 11));
+		dificultad.setFont(new Font("Yu Gothic Medium", Font.BOLD, 11));
 		GridBagConstraints gbc_dificultad = new GridBagConstraints();
 		gbc_dificultad.insets = new Insets(0, 0, 0, 5);
 		gbc_dificultad.anchor = GridBagConstraints.EAST;
@@ -99,6 +104,7 @@ public class VentanaInicio extends JFrame {
 		panel_1.add(dificultad, gbc_dificultad);
 		
 		boxDificultad = new JComboBox<>();
+		boxDificultad.setForeground(new Color(0, 128, 0));
 		boxDificultad.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 11));
 		boxDificultad.setModel(new DefaultComboBoxModel(new String[] {"Fácil", "Media", "Difícil"}));
 		boxDificultad.setToolTipText("");
@@ -109,6 +115,7 @@ public class VentanaInicio extends JFrame {
 		panel_1.add(boxDificultad, gbc_boxDificultad);
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(193, 238, 205));
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
 		gbc_panel_2.insets = new Insets(0, 0, 5, 5);
 		gbc_panel_2.fill = GridBagConstraints.BOTH;

@@ -19,6 +19,7 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Font;
+import java.awt.Color;
 
 public class VentanaPerder extends JFrame {
 
@@ -37,6 +38,7 @@ public class VentanaPerder extends JFrame {
 		setBounds(0, 0, 400, 200);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(193, 238, 205));
 		contentPane.setBorder(new EmptyBorder(10, 10, 10, 10));
 
 		setContentPane(contentPane);
@@ -47,8 +49,9 @@ public class VentanaPerder extends JFrame {
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JLabel lblNewLabel = new JLabel("¡Perdiste!");
-		lblNewLabel.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 11));
+		JLabel lblNewLabel = new JLabel("¡PERDISTE!");
+		lblNewLabel.setForeground(new Color(255, 0, 0));
+		lblNewLabel.setFont(new Font("Yu Gothic Medium", Font.BOLD, 11));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.insets = new Insets(0, 0, 10, 0);
 		gbc_lblNewLabel.gridx = 0;
@@ -64,6 +67,7 @@ public class VentanaPerder extends JFrame {
 		contentPane.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(193, 238, 205));
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.insets = new Insets(0, 0, 0, 0);
 		gbc_panel.fill = GridBagConstraints.VERTICAL;
@@ -71,7 +75,7 @@ public class VentanaPerder extends JFrame {
 		gbc_panel.gridy = 2;
 		contentPane.add(panel, gbc_panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 20, 0};
+		gbl_panel.columnWidths = new int[]{0, 20};
 		gbl_panel.rowHeights = new int[]{0};
 		gbl_panel.columnWeights = new double[]{0.0, 0.0};
 		gbl_panel.rowWeights = new double[]{0.0};
@@ -96,6 +100,7 @@ public class VentanaPerder extends JFrame {
 		panel.add(botonSi, gbc_botonSi);
 		
 		JButton botonNo = new JButton("No");
+		botonNo.setBackground(new Color(193, 238, 205));
 		botonNo.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 11));
 		botonNo.setPreferredSize(new Dimension(80, 30));
 		botonNo.addMouseListener(new MouseAdapter() {

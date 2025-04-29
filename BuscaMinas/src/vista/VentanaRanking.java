@@ -41,6 +41,7 @@ public class VentanaRanking extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(193, 238, 205));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -52,6 +53,7 @@ public class VentanaRanking extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(193, 238, 205));
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.gridwidth = 3;
 		gbc_panel.insets = new Insets(0, 0, 5, 0);
@@ -66,7 +68,7 @@ public class VentanaRanking extends JFrame {
 		gbl_panel.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
-		JLabel lblNewLabel = new JLabel("RANKING");
+		JLabel lblNewLabel = new JLabel("RANKING DE BUSCAMINAS");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 10));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.insets = new Insets(0, 0, 0, 5);
@@ -75,6 +77,7 @@ public class VentanaRanking extends JFrame {
 		panel.add(lblNewLabel, gbc_lblNewLabel);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(193, 238, 205));
 		panel_1.setBorder(null);
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
 		gbc_panel_1.gridwidth = 3;
@@ -114,6 +117,7 @@ public class VentanaRanking extends JFrame {
 		panel_1.add(lblNewLabel_3, gbc_lblNewLabel_3);
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(215, 244, 223));
 		panel_2.setBorder(new MatteBorder(1, 1, 0, 1, (Color) new Color(0, 0, 0)));
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
 		gbc_panel_2.gridheight = 5;
@@ -164,6 +168,7 @@ public class VentanaRanking extends JFrame {
 		panel_2.add(Ranking5, gbc_Ranking5);
 		
 		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(215, 244, 223));
 		panel_3.setBorder(new MatteBorder(1, 1, 0, 1, (Color) new Color(0, 0, 0)));
 		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
 		gbc_panel_3.gridheight = 5;
@@ -214,6 +219,7 @@ public class VentanaRanking extends JFrame {
 		panel_3.add(Puntuacion5, gbc_Puntuacion5);
 		
 		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(new Color(215, 244, 223));
 		panel_4.setBorder(new MatteBorder(1, 1, 0, 1, (Color) new Color(0, 0, 0)));
 		GridBagConstraints gbc_panel_4 = new GridBagConstraints();
 		gbc_panel_4.gridheight = 5;
@@ -264,6 +270,7 @@ public class VentanaRanking extends JFrame {
 		panel_4.add(Tiempo5, gbc_Tiempo5);
 		
 		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(new Color(193, 238, 205));
 		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
 		gbc_panel_5.gridwidth = 3;
 		gbc_panel_5.insets = new Insets(0, 0, 0, 5);
